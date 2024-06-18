@@ -1,0 +1,29 @@
+h1,
+p {
+    text-align: center;
+
+}
+
+th, td {
+    text-align: center;
+    border: 2px solid black;
+    font-size: large;
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    font-size: large;
+    margin: 0.30%;
+    margin-top: 1% 
+
+}
