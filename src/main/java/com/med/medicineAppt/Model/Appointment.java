@@ -34,53 +34,5 @@ public class Appointment {
 	private int slot;
 
 	private boolean booked;
-//
-//	public int getAppointment_id() {
-//		return appointment_id;
-//	}
-//
-//	public void setAppointment_id(int appointment_id) {
-//		this.appointment_id = appointment_id;
-//	}
-//
-//	public int getDoctorId() {
-//		return doctorId;
-//	}
-//
-//	public void setDoctorId(int doctorId) {
-//		this.doctorId = doctorId;
-//	}
-//
-//	public int getPatientId() {
-//		return patientId;
-//	}
-//
-//	public void setPatientId(int patientId) {
-//		this.patientId = patientId;
-//	}
-//
-//	public LocalDate getVisitDate() {
-//		return visitDate;
-//	}
-//
-//	public void setVisitDate(LocalDate visitDate) {
-//		this.visitDate = visitDate;
-//	}
-//
-//	public int getSlot() {
-//		return slot;
-//	}
-//
-//	public void setSlot(int slot) {
-//		this.slot = slot;
-//	}
-//
-//	public boolean isBooked() {
-//		return booked;
-//	}
-//
-//	public void setBooked(boolean booked) {
-//		this.booked = booked;
-//	}
 
 }
