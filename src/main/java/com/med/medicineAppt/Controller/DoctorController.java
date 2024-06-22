@@ -55,7 +55,7 @@ public class DoctorController {
 
 			return "doc_appointment_check";
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("status", 404);
+			redirectAttributes.addFlashAttribute("status", HttpStatus.BAD_GATEWAY);
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/error/";
 		}
@@ -72,7 +72,7 @@ public class DoctorController {
 			Prescription prescription = new Prescription();
 
 			prescription.setDoctorId(app.getDoctorId());
-			prescription.setPatientId(appId);
+			prescription.setPatientId(app.getPatientId());
 			prescription.setIssuedDateTime(LocalDateTime.now());
 			model.addAttribute("prescriptionForm", prescription);
 
@@ -83,7 +83,7 @@ public class DoctorController {
 
 			return "doc_prescription_issue";
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("status", 500);
+			redirectAttributes.addFlashAttribute("status", HttpStatus.NOT_FOUND);
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/error/";
 		}
@@ -97,27 +97,23 @@ public class DoctorController {
 			prescriptionRepository.save(prescription);
 			return "redirect:/doctor/" + prescription.getDoctorId();
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("status", 500);
+			redirectAttributes.addFlashAttribute("status", HttpStatus.NOT_ACCEPTABLE);
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/error/";
 		}
 	}
 
-	@GetMapping({ "issuedprescription/{patientId}" })
-	public String getPrescriptionIssued(@PathVariable("patientId") int patientId, Model model,
+	@GetMapping({ "issuedprescription/{doctorId}" })
+	public String getPrescriptionIssued(@PathVariable("doctorId") int doctorId, Model model,
 										RedirectAttributes redirectAttributes) {
 		try {
-			String name = patientRepository.findById(patientId).get().getPatient_name();
-			model.addAttribute("id", patientId);
-			model.addAttribute("name", name);
-
-			List<Prescription> prescriptions = prescriptionRepository.findByPatientId(patientId);
+			List<Prescription> prescriptions = prescriptionRepository.findByDoctorId(doctorId);
 			System.out.println("prescriptions = " + prescriptions);
 			model.addAttribute("prescriptions", prescriptions);
 
 			return "doc_prescription_check";
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("status", 500);
+			redirectAttributes.addFlashAttribute("status", HttpStatus.BAD_GATEWAY);
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/error/";
 		}
@@ -127,11 +123,6 @@ public class DoctorController {
 	public String getPrescriptionModify(@PathVariable("prescId") int prescId, Model model,
 										RedirectAttributes redirectAttributes) {
 		try {
-			int patientId = prescriptionRepository.findById(prescId).get().getPatientId();
-			String name = patientRepository.findById(patientId).get().getPatient_name();
-			model.addAttribute("id", patientId);
-			model.addAttribute("name", name);
-
 			Prescription prescription = prescriptionRepository.findById(prescId).get();
 			prescription.setPrescription_id(prescId);
 			prescription.setIssuedDateTime(LocalDateTime.now());
@@ -139,7 +130,7 @@ public class DoctorController {
 
 			return "doc_prescription_modify";
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("status", 500);
+			redirectAttributes.addFlashAttribute("status", HttpStatus.BAD_GATEWAY);
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/error/";
 		}
