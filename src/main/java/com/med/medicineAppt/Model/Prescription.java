@@ -34,9 +34,7 @@ public class Prescription {
 	private LocalDateTime issuedDateTime;
 	
 	private String findings;
-	
-    @Type(JsonType.class)
-    @Column(columnDefinition = "json")
+
 	private String medicines;
 	
 }
