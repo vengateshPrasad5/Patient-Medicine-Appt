@@ -55,9 +55,7 @@
 </head>
 
 <body class="bg-light">
-	<!--<a th:href="">Back to Home</a>-->
-	<p th:text="'Patient ID:   '+${id}" />
-	<p th:text="'Patient Name: '+${name}" />
+
 	<button class="bg-primary text-white" onclick="history.go(-1)"> Back to Home</button>
 
 	<center>
@@ -80,10 +78,6 @@
 				<td th:text="${presc.medicines}"></td>
 				<td> <button style="background-color: blue; "><a
 							th:href="@{../modifyprescription/{id}(id=${presc.prescription_id})}">Modify</a>
-					</button> </td>
-
-				<td> <button style="background-color: red; "><a
-							th:href="@{../deleteprescription/{id}(id=${presc.prescription_id})}">Delete</a>
 					</button> </td>
 
 			</tr>
