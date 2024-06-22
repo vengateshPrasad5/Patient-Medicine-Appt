@@ -67,7 +67,7 @@
 				<th>Issued Date and Time</th>
 				<th>Findings</th>
 				<th>Medicine</th>
-				<th colspan="2">Action</th>
+				<th >Action</th>
 
 			</thead>
 			<tr th:each="presc : ${prescriptions}">
@@ -76,9 +76,10 @@
 				<td th:text="${presc.issuedDateTime}"></td>
 				<td th:text="${presc.findings}"></td>
 				<td th:text="${presc.medicines}"></td>
-				<td> <button style="background-color: blue; "><a
-							th:href="@{../modifyprescription/{id}(id=${presc.prescription_id})}">Modify</a>
-					</button> </td>
+				<td> <button style="background-color: blue;">
+					<a th:href="@{../modifyprescription/{id}(id=${presc.prescription_id})}">Modify</a>
+					</button>
+				</td>
 
 			</tr>
 		</table>
